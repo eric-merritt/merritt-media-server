@@ -1,7 +1,4 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-    dotenv.config();
-
 
 export default async function connect() {
 
@@ -9,11 +6,7 @@ export default async function connect() {
 
        const db = process.env.MONGODB_URI || '';
 
-       await mongoose.connect(db, {
-
-        dbName: 'merritt-media-server',
-        
-       });
+       await mongoose.connect(db);
 
        const connection = mongoose.connection;
 

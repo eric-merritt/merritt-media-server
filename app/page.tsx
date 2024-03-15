@@ -1,16 +1,38 @@
-import { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: "Merritt Media Server"
-};
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 export default function Page() {
   
+  const router = useRouter();
+
+  const onLogout = async () => {
+
+    try {
+      await axios.post('/api/users/logout');
+      router.push('/login');
+    } catch (err) {
+      console.log(err);
+    }
+  } 
+
   return (
-    <main className="flex justify-center items-center w-min-screen h-max-screen">
-      <h1 className="title">Welcome to Merritt Media Server!</h1>
-      <p>Please <a href='/login'>Log-In</a> to continue.</p>
-    </main>
+    <>
+    <h1>Videos Page</h1> <ul><li><p><button onClick={onLogout}>Log-Out</button></p></li></ul>
+    <div id="video-content" className="grid grid-cols-3 grid-rows-3">
+      <div className="videoContent"></div>
+      <div className="videoContent"></div>
+      <div className="videoContent"></div>
+      <div className="videoContent"></div>
+      <div className="videoContent"></div>
+      <div className="videoContent"></div>
+      <div className="videoContent"></div>
+      <div className="videoContent"></div>
+      <div className="videoContent"></div>
+    </div>
+    </>
   );
 
 };

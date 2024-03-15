@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body,
+main {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(0,0,0,.1);
+  height: 100vh;
+}
+
+#form-link {
+  margin: auto;
+  width: fit-content;
+}
+
+#form-link > a {
+  font-weight: 700;
+}
+
+#form-link > a:hover {
+  color: rebeccapurple;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: auto;
+  width: fit-content;
+}
+
+div.flex {
+  background: transparent;
+}
+
+form#sign-up-form,
+form#login-form {
+  width: fit-content;
+  size: .5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin: 2rem auto 2rem auto;
+  box-shadow: 1px 1px 3px 0 rgba(0,0,0,.35);
+  background-color: rgb(255,255,255);
+}
+
+.formGroup {
+  display: flex;
+  padding: .5rem;
+}
+
+form#sign-up-form > input,
+form#login-form > input {
+  font-size: 1rem;
+  padding: .5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.1);
+  width: 25ch;
+  margin: .5rem 0 .5rem 0;
+  size: 14px;
+  color: black;
+}
+
+form#sign-up-form > button,
+form#login-form > button {
+  background-color: rgba(0,0,0,.1);
+  padding: .25rem;
+  width: 40%;
+  align-self: center;
+  border-radius: 5px;
+  border: 1px outset;
+  margin: .5rem;
+  z-index: 10;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+form#sign-up-form > input.invalid:focus {
+  outline: 2px solid red;
+}
+
+input.invalid:focus span:after {
+  content: 'Passwords do not match';
+}
+
+div#video-content {
+  border: 1px solid black;
+  width: 66%;
+  margin: auto;
+  display: grid;
+  grid: repeat(3, 1fr) / repeat(3, 1fr);
+  justify-items: center;
+}
+
+div.videoContent {
+  width: 320px;
+  height: 240px;
+  border: 1px solid black;
+  margin: .5rem;
+}

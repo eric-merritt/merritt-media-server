@@ -4,14 +4,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
 import jwt from "jsonwebtoken";
 
-
+  // open connection to mongodb
+        connect();
 
 export async function POST (request: NextRequest) {
 
     try {
 
-        // open connection to mongodb
-        connect();
+      
         
         const reqBody = await request.json();
         const { username, password } = reqBody;
@@ -31,11 +31,18 @@ export async function POST (request: NextRequest) {
         }
 
         const tokenData = {
-            username: user.username || ''
+            username: user.username,
+            userId: user._id
         };
 
         // create token with 24hr expiry
-        const token = jwt.sign(tokenData, process.env.TOKEN_SECRET!, { expiresIn: '1d'});
+        const token = jwt.sign(
+            tokenData,
+            process.env.TOKEN_SECRET!, 
+            { 
+                expiresIn: '1d'
+            });            
+       
 
         // create JSON response for successful login
         const response = NextResponse.json({
